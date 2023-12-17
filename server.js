@@ -6,7 +6,6 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const skillsRouter = require('./routes/skills');
 
 const app = express();
@@ -14,6 +13,12 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(function(req, res, next) {
+  res.locals.time = new Date().toLocaleTimeString();
+  next();
+});
+
 
 
 app.use(logger('dev'));
@@ -25,7 +30,6 @@ app.use(methodOverride('_method'));
 
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/skills', skillsRouter);
 
 // catch 404 and forward to error handler

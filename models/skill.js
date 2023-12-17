@@ -1,12 +1,15 @@
 const skills = [
-    { id: 1, name: 'JavaScript', level: 'Advanced' },
-    { id: 2, name: 'Node.js', level: 'Intermediate' },
-    // Add more skills as needed
+    { id: 1, name: 'JavaScript', level: 'Advanced', done: true },
+    { id: 2, name: 'Node.js', level: 'Intermediate', done: true },
+    { id: 3, name: 'React', level: 'Beginner', done: true },
+    { id: 4, name: 'Python', level: 'Advanced', done: true },
 ];
 
 module.exports = {
   getAll,
-  getOne
+  getOne,
+  create,
+  deleteOne,
 };
 
 function getAll() {
@@ -14,5 +17,18 @@ function getAll() {
 }
 
 function getOne(id) {
-  return skills.find(skill => skill.id === parseInt(id));
+    id = parseInt(id);
+    return skills.find((skill) => skill.id === id);
+}
+
+function create(skill) {
+    skill.id=Date.now() % 100000;
+    skill.done = true;
+    skills.push(skill);
+}
+
+function deleteOne(id) {
+    id = parseInt(id);
+    const idx = skills.findIndex((skill) => skill.id === id);
+    skills.splice(idx, 1);
 }
