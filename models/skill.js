@@ -24,6 +24,7 @@ function getOne(id) {
 function create(skill) {
     skill.id=Date.now() % 100000;
     skill.done = true;
+    skill.level = 'Beginner';
     skills.push(skill);
 }
 

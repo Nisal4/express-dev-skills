@@ -12,7 +12,9 @@
                     <button type="submit">X</button>
                     </form>
                     <a href="/skills/<%= a.id %>"><%= a.name %></a>
-                    -
+                    ~
+                    <%= a.level %>
+                    ~
                     <%= a.done ? 'Learned' : 'Not Learned' %>
                 </li>
             <% }); %>
